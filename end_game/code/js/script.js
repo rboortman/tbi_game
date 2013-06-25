@@ -16,11 +16,15 @@ var ease_in = 'easeInBack';
 var ease_out = 'easeOutBack';
 
 var intervals = [];
-var game_over_text = 'GAME OVER!<br><br>Press \'Start!\' to retry'
+var game_over_text = "GAME OVER!<br><br>Press 'Retry!' to try again"
 var gamma = 2.2;
 
 var undefined;
 
+
+function isNumber(n) {
+   return !isNaN(parseFloat(n)) && isFinite(n);
+}
 
 function count (obj) {
    var counted = 0;
@@ -80,18 +84,28 @@ function start_game () {
 
 function game_over (event) {
    $.each(intervals, function remove_intervals (key, interval) { clearInterval(interval) });
-   $.each(creatures_onscreen, function stop_animation (key, crt_div) {
+   $('#playfield .creatures').each(function stop_animation (key, crt_div) {
       crt_div = $(crt_div);
       crt_div.stop();
+
       var colour = crt_div.css('background');
       col_arr = colour.substring(colour.indexOf('(') + 1, colour.indexOf(')')).split(', ');
-      var gray = 0.21 * parseInt(col_arr[0]) + 0.71 * parseInt(col_arr[0]) + 0.07 * parseInt(col_arr[0]);
-      console.log(gray);
-      crt_div.css('background-color', 'rbg(' + gray + ', ' + gray + ', ' + gray + ')');
-      console.log(crt_div)
+      var gray_bgr = parseInt(0.21 * parseInt(col_arr[0]) + 0.71 * parseInt(col_arr[0]) + 0.07 * parseInt(col_arr[0]));
+      gray_bgr = gray_bgr.toString(16);
+
+      var colour = crt_div.css('border-color');
+      col_arr = colour.substring(colour.indexOf('(') + 1, colour.indexOf(')')).split(', ');
+      var gray_bor = parseInt(0.21 * parseInt(col_arr[0]) + 0.71 * parseInt(col_arr[0]) + 0.07 * parseInt(col_arr[0]));
+      gray_bor = gray_bor.toString(16);
+
+      crt_div.css('backgroundColor', '#' + gray_bgr + gray_bgr + gray_bgr);
+      crt_div.css('border-color',    '#' + gray_bor + gray_bor + gray_bor);
    })
 
    $('#info-text').html(game_over_text);
+   $('#button').text('Retry!');
+   $('#playfield .creatures').off('click');
+   $('#playfield .creatures').css('z-index', '0');
    toggle_button();
 }
 
@@ -142,6 +156,8 @@ function click_creature (event) {
                         $(this).fadeOut(animate_duration, function remove_div (event) { $(this).remove() });
                         var index = parseInt(this.id);
                         delete creatures_onscreen[index];
+                     } else {
+                        $(this).removeClass('clicked');
                      }
                   },
                });
@@ -158,8 +174,6 @@ function click_creature (event) {
          });
       },
    })
-
-   console.log(creature);
 }
 
 function add_legend_bounce () {
@@ -191,25 +205,40 @@ function save_creatures () {
          creatures[name].height = height;
       });
    });
-   console.log(creatures);
 
    $.each(creatures, function save_total_spawning (key, obj) {
       total_spawn_rates += obj.spawn_rate;
    })
 }
 
+function prepare_game () {
+   $('#info-container').fadeOut();
+   $('#playfield .creatures').fadeOut(function (event) { $(this).remove(); });
+   $('#score').text(0);
+}
+
 function toggle_button (event) {
    var button = $('#info-container')
    if (button.is(':visible')) {
-      button.fadeOut();
+      prepare_game();
       start_game();
    } else {
       button.fadeIn();
    }
 }
 
+function read_javascript () {
+   if (typeof blob   !== 'undefined') { $.extend(creatures.blob,   blob);   }
+   if (typeof blieb  !== 'undefined') { $.extend(creatures.blieb,  blieb);  }
+   if (typeof pakpak !== 'undefined') { $.extend(creatures.pakpak, pakpak); }
+   if (typeof same   !== 'undefined') { $.extend(creatures.same,   same);   }
+   if (typeof klog   !== 'undefined') { $.extend(creatures.klog,   klog);   }
+   console.log(creatures);
+}
+
 function ready () {
    save_creatures();
+   read_javascript();
    add_legend_bounce();
 
    $('#button-container').click(toggle_button);

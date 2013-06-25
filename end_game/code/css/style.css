@@ -1,0 +1,218 @@
+@font-face {
+   font-family: 'Press Start 2P';
+   font-style: normal;
+   font-weight: 400;
+   src: url(http://localhost/personal/code/fonts/PressStart2P-Regular.ttf) format('truetype');
+}
+
+
+
+/* CSS for the whole page */
+html, body {
+   width: 100%;
+   min-width: 1000px;
+   height: 100%;
+   padding: 0px;
+   margin: 0px;
+   background: rgb(102, 8, 29);
+   overflow: auto;
+}
+
+body {
+   color: rgb(204, 122, 98);
+   font-family: 'Press Start 2P', sans-serif;
+   text-shadow: 2px 2px 0px rgba(153, 56, 27, 1);
+}
+
+
+
+/* CSS for the header */
+div#header {
+   padding: 1px 0px 0px;
+   margin: -1px 0px 0px;
+   text-align: center;
+}
+
+div#title {
+   margin: 50px 0px 20px;
+   font-size: 2em;
+   text-shadow: 4px 4px 0px rgba(153, 56, 27, 1);
+}
+
+div#score-container {
+   font-size: 1.3em;
+   text-shadow: 3px 3px 0px rgba(153, 56, 27, 1);
+}
+
+
+
+/* CSS for the play ground */
+div#content {
+   width: 80%;
+   min-width: 1000px;
+   max-width: 2000px;
+   margin: 50px auto 25px;
+   overflow: auto;
+}
+
+div#play-container {
+   width: 65%;
+   height: 400px;
+   margin-left: 5%;
+   background: rgba(204, 122, 98, 0.8);
+   float: left;
+   overflow: hidden;
+}
+
+div#playfield {
+   width: 97%;
+   height: 380px;
+   padding: 1px 0px 0px;
+   margin: 10px auto;
+   background: white;
+   position: relative;
+   overflow: hidden;
+
+   -webkit-box-shadow: inset 0px 0px 20px 5px rgba(153, 56, 27, 0.75);
+   -moz-box-shadow:    inset 0px 0px 20px 5px rgba(153, 56, 27, 0.75);
+   box-shadow:         inset 0px 0px 20px 5px rgba(153, 56, 27, 0.75);
+}
+
+div#info-container {
+   position: relative;
+   z-index: 1;
+}
+
+div#info-text {
+   margin: 100px 0px 0px;
+   text-align: center;
+}
+
+div#button-container {
+   width: 200px;
+   margin: 50px auto 0px;
+
+   cursor: pointer;
+
+   -webkit-box-shadow: 0px 8px 0px rgb(76, 6, 22), 0px 15px 20px rgba(0, 0, 0, .35);
+   -moz-box-shadow:    0px 8px 0px rgb(76, 6, 22), 0px 15px 20px rgba(0, 0, 0, .35);
+   box-shadow:         0px 8px 0px rgb(76, 6, 22), 0px 15px 20px rgba(0, 0, 0, .35);
+
+   -webkit-transition: box-shadow 0.15s ease-out;
+      -moz-transition: box-shadow 0.15s ease-out;
+       -ms-transition: box-shadow 0.15s ease-out;
+        -o-transition: box-shadow 0.15s ease-out;
+           transition: box-shadow 0.15s ease-out;
+}
+
+div#button-container:active, div#button-container:active {
+   -webkit-box-shadow: 0px 8px 0px rgb(76, 6, 22), 0px 12px 10px rgba(0, 0, 0, .35);
+   -moz-box-shadow:    0px 8px 0px rgb(76, 6, 22), 0px 12px 10px rgba(0, 0, 0, .35);
+   box-shadow:         0px 8px 0px rgb(76, 6, 22), 0px 12px 10px rgba(0, 0, 0, .35);
+}
+
+div#button {
+   width: 200px;
+   padding: 22px 0px;
+   background: rgb(178, 14, 51);
+   text-align: center;
+
+   -webkit-transition: transform 0.1s ease-in-out;
+      -moz-transition: transform 0.1s ease-in-out;
+       -ms-transition: transform 0.1s ease-in-out;
+        -o-transition: transform 0.1s ease-in-out;
+           transition: transform 0.1s ease-in-out;
+}
+
+div#button:active, div#button:focus {
+   -webkit-transform: translate(0, 4px);
+   -moz-transform:    translate(0, 4px);
+   -ms-transform:     translate(0, 4px);
+   -o-transform:      translate(0, 4px);
+   transform:         translate(0, 4px);
+}
+
+
+
+/* CSS for the legend */
+table#legend-container {
+   margin: 50px 0px 50px 50px;
+   float: left;
+}
+
+table#legend-container td {
+   padding: 10px 0px;
+}
+
+div.legend-icons {
+   float: right;
+   position: static  !important;
+}
+
+
+
+/* CSS for the creatures */
+div.creatures {
+   position: absolute;
+   border: 3px solid;
+   background-size: cover;
+   background-position: center center;
+   box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   -webkit-box-sizing: border-box;
+
+   cursor: pointer;
+}
+
+div.blob {
+   width: 30px;
+   height: 30px;
+   background: rgb(5, 132, 178);
+   border-color: rgba(9, 40, 51, 0.8);
+}
+
+div.blieb {
+   width: 20px;
+   height: 40px;
+   background: rgb(76, 19, 191);
+   border-color: rgba(9, 40, 51, 0.8);
+}
+
+div.pakpak {
+   width: 45px;
+   height: 15px;
+   background: rgb(188, 47, 149);
+   border-color: rgba(61, 15, 48, 0.8);
+}
+
+div.same {
+   width: 50px;
+   height: 50px;
+   background: rgb(85, 153, 15);
+   border-color: rgba(42, 115, 29, 0.8);
+}
+
+div.klog {
+   width: 15px;
+   height: 15px;
+   background: rgb(255, 138, 13);
+   border-color: rgba(127, 72, 13, 0.8);
+}
+
+
+
+/* CSS for footer */
+div#footer {
+   padding: 15px 0px;
+   background: rgba(204, 122, 98, 0.3);
+   text-align: center;
+   font-size: 0.8em;
+}
+
+div#footer img {
+   width: 117px;
+   height: 35px;
+   vertical-align: -7px;
+}
+
+

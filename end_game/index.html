@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <meta name='viewport' content='width=device-width,user-scalable=no,initial-scale=1, maximum-scale=1, minimum-scale=1.0' />
+      <title>The GAME!</title>
+      <link rel="shortcut icon" href='code/images/favicon.ico' type='image/x-icon'>
+      <!--<script src='//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js'></script>-->
+      
+      <script type='text/javascript' charset='utf-8' src='code/js/external/jquery.min.js'></script>
+      <script type='text/javascript' charset='utf-8' src='code/js/external/jquery-ui.min.js'></script>
+      
+      <script type='text/javascript' charset='utf-8' src='code/js/script.js'></script>
+      <script type='text/javascript' charset='utf-8' src='code/js/creatures.js'></script>
+      <script type='text/javascript' charset='utf-8' src='javascript.js'></script>
+      <link rel='stylesheet' type='text/css' href='code/css/style.css' />
+      <link rel='stylesheet' type='text/css' href='css.css' />
+      
+      <!--<link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>-->
+   </head>
+   <body>
+      <div id='header'>
+         <div id='title'>TBI's GAME</div>
+         <div id='score-container'>
+            Score:
+            <span id='score'>0</span>
+         </div>
+      </div>
+
+      <div id='content'>
+         <div id='play-container'>
+            <div id='playfield'>
+               <div id='info-container'>
+                  <div id='info-text'>
+                     Press 'Start!' to begin the game
+                  </div>
+                  <div id='button-container'>
+                     <div id='button'>Start!</div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <table id='legend-container'>
+            <tr>
+               <td class='icon-cell'><div class='blob legend-icons creatures'></div></td>
+               <td class='text-cell'> ={Blob}</td>
+            </tr>
+            <tr>
+               <td class='icon-cell'><div class='blieb legend-icons creatures'></div></td>
+               <td class='text-cell'> ={Blieb}</td>
+            </tr>
+            <tr>
+               <td class='icon-cell'><div class='pakpak legend-icons creatures'></div></td>
+               <td class='text-cell'> ={PakPak}</td>
+            </tr>
+            <tr>
+               <td class='icon-cell'><div class='same legend-icons creatures'></div></td>
+               <td class='text-cell'> ={Same}</td>
+            </tr>
+            <tr>
+               <td class='icon-cell'><div class='klog legend-icons creatures'></div></td>
+               <td class='text-cell'> ={Klog}</td>
+            </tr>
+         </table>
+      </div>
+
+      <div id='footer'>
+         This game was created by
+         <a href='mailto:info@itronaut.com?subject=Questions about TBI application'>
+            <img src='code/images/itronaut.png' title='itronaut - Expanding your IT possibilities' alt='itronaut' />
+         </a>
+      </div>
+   </body>
+</html>

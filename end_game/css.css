@@ -1,0 +1,31 @@
+div.blob {
+   width: 30px;
+   height: 30px;
+   background: rgb(5, 132, 178);
+}
+
+div.blieb {
+   width: 20px;
+   height: 40px;
+   background: rgb(76, 19, 191);
+}
+
+div.pakpak {
+   width: 45px;
+   height: 15px;
+   background: rgb(188, 47, 149);
+}
+
+div.same {
+   width: 50px;
+   height: 50px;
+   background: rgb(85, 153, 15);
+}
+
+div.klog {
+   width: 15px;
+   height: 15px;
+   background: rgb(255, 138, 13);
+}
+
+

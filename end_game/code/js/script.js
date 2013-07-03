@@ -6,9 +6,11 @@
 
 var creature_list = ['blob', 'blieb', 'pakpak', 'same', 'klog'];
 var creatures_onscreen = {};
+var creatures_index = 0;
 var total_spawn_rates = 0;
 var speed_numerator = 5000;
 var overall_speed = 1;
+var level_increasing_rate = 20000;
 
 var animate_duration = 200;
 var reduce_ratio = 0.8;
@@ -16,6 +18,7 @@ var ease_in = 'easeInBack';
 var ease_out = 'easeOutBack';
 
 var intervals = [];
+var timeouts  = [];
 var game_over_text = "GAME OVER!<br><br>Press 'Retry!' to try again"
 var gamma = 2.2;
 
@@ -24,12 +27,6 @@ var undefined;
 
 function isNumber(n) {
    return !isNaN(parseFloat(n)) && isFinite(n);
-}
-
-function count (obj) {
-   var counted = 0;
-   $.each(obj, function count_obj (key, thing) { counted++; });
-   return counted;
 }
 
 function get_creature (rand) {
@@ -54,7 +51,7 @@ function spawn_creature () {
    var speed_rand = Math.floor(Math.random() * 3) + creature_obj.speed;
    var place_rand = Math.random() * (width - creature_obj.width.size);
 
-   var index = count(creatures_onscreen);
+   var index = creatures_index++;
 
    var creature_div = $('<div>', {
       id: index,
@@ -75,15 +72,28 @@ function spawn_creature () {
    return creature_div;
 }
 
-function start_game () {
+function playing () {
    intervals.push(setInterval(function add_creature () {
       spawn_creature();
    }, (speed_numerator / overall_speed)));
    spawn_creature();
+
+   timeouts.push(setTimeout(function increase_level () {
+      $.each(intervals, function remove_intervals (key, interval) { clearInterval(interval) });
+      $.each(timeouts,  function remove_timeouts  (key, timeout)  { clearTimeout (timeout)  });
+      $('#level').text(parseInt($('#level').text()) + 1);
+      overall_speed++;
+      playing();
+   }, level_increasing_rate));
+}
+
+function start_game () {
+   playing();
 }
 
 function game_over (event) {
    $.each(intervals, function remove_intervals (key, interval) { clearInterval(interval) });
+   $.each(timeouts,  function remove_timeouts  (key, timeout)  { clearTimeout (timeout)  });
    $('#playfield .creatures').each(function stop_animation (key, crt_div) {
       crt_div = $(crt_div);
       crt_div.stop();
@@ -101,6 +111,10 @@ function game_over (event) {
       crt_div.css('backgroundColor', '#' + gray_bgr + gray_bgr + gray_bgr);
       crt_div.css('border-color',    '#' + gray_bor + gray_bor + gray_bor);
    })
+
+   creatures_onscreen = {};
+   creatures_index = 0;
+   overall_speed = 1;
 
    $('#info-text').html(game_over_text);
    $('#button').text('Retry!');

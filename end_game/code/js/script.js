@@ -98,7 +98,7 @@ function game_over (event) {
       crt_div = $(crt_div);
       crt_div.stop();
 
-      var colour = crt_div.css('background');
+      var colour = crt_div.css('background-color');
       col_arr = colour.substring(colour.indexOf('(') + 1, colour.indexOf(')')).split(', ');
       var gray_bgr = parseInt(0.21 * parseInt(col_arr[0]) + 0.71 * parseInt(col_arr[0]) + 0.07 * parseInt(col_arr[0]));
       gray_bgr = gray_bgr.toString(16);
@@ -247,7 +247,6 @@ function read_javascript () {
    if (typeof pakpak !== 'undefined') { $.extend(creatures.pakpak, pakpak); }
    if (typeof same   !== 'undefined') { $.extend(creatures.same,   same);   }
    if (typeof klog   !== 'undefined') { $.extend(creatures.klog,   klog);   }
-   console.log(creatures);
 }
 
 function ready () {
